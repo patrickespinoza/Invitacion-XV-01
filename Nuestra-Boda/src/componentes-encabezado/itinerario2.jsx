@@ -5,42 +5,71 @@ import {
   Camera,
   UtensilsCrossed,
   Music2,
-  HeartHandshake,
   Cake,
+  Sparkles,
+  Crown,
+  Heart,
 } from "lucide-react";
+
+// ==========================================
+// PALETA XV ESENCIAL - WEDLY
+// ROSA EMPOLVADO Y CHAMPÁN
+// ==========================================
+
+const colores = {
+  marfil: "#F8F2F0",
+  rosaClaro: "#E8CFCB",
+  rosaAntiguo: "#C89B91",
+  champagne: "#B89A6A",
+  ciruela: "#66545A",
+};
 
 // ==========================================
 // INFORMACIÓN EDITABLE - WEDLY
 // ==========================================
 
-const eventosIzquierda = [
+const eventos = [
   {
-    titulo: "Fotografías",
+    id: 1,
+    titulo: "Sesión de fotografías",
+    hora: "4:00 PM",
+    descripcion: "Capturando recuerdos inolvidables.",
     icono: Camera,
-    hora: "4:00 pm - 4:30 pm",
   },
   {
-    titulo: "Comida",
+    id: 2,
+    titulo: "Entrada de Isabella",
+    hora: "5:00 PM",
+    descripcion: "El comienzo de una noche mágica.",
+    icono: Crown,
+  },
+  {
+    id: 3,
+    titulo: "Cena",
+    hora: "6:00 PM",
+    descripcion: "Compartamos juntos este momento especial.",
     icono: UtensilsCrossed,
-    hora: "5:00 pm - 6:00 pm",
   },
   {
-    titulo: "Baile",
-    icono: Music2,
-    hora: "6:30 pm - 11:30 pm",
-  },
-];
-
-const eventosDerecha = [
-  {
-    titulo: "Llegada de Novios",
-    icono: HeartHandshake,
-    hora: "4:30 pm - 5:00 pm",
+    id: 4,
+    titulo: "Vals",
+    hora: "7:30 PM",
+    descripcion: "Un baile para recordar toda la vida.",
+    icono: Heart,
   },
   {
+    id: 5,
     titulo: "Pastel",
+    hora: "8:30 PM",
+    descripcion: "Un dulce momento para celebrar.",
     icono: Cake,
-    hora: "6:00 pm - 6:30 pm",
+  },
+  {
+    id: 6,
+    titulo: "Baile y celebración",
+    hora: "9:00 PM",
+    descripcion: "¡Que comience la diversión!",
+    icono: Music2,
   },
 ];
 
@@ -48,94 +77,179 @@ const eventosDerecha = [
 // ANIMACIONES
 // ==========================================
 
-const containerFade = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.9,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-const cardFade = {
+const fadeUp = {
   hidden: {
     opacity: 0,
     y: 35,
-    scale: 0.96,
-    filter: "blur(6px)",
   },
-  show: (index) => ({
+  visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.75,
-      delay: index * 0.14,
+      duration: 0.8,
       ease: [0.22, 1, 0.36, 1],
     },
-  }),
+  },
 };
 
 // ==========================================
-// TARJETA REUTILIZABLE
+// TARJETA DEL ITINERARIO
 // ==========================================
 
 const TarjetaItinerario = ({ evento, index }) => {
   const Icono = evento.icono;
 
   return (
-    <motion.div
-      custom={index}
-      variants={cardFade}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.35 }}
-      whileHover={{
-        y: -6,
-        scale: 1.015,
-        transition: { duration: 0.25 },
+    <motion.article
+      initial={{
+        opacity: 0,
+        y: 35,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      transition={{
+        duration: 0.8,
+        delay: Math.min(index * 0.08, 0.35),
+        ease: [0.22, 1, 0.36, 1],
       }}
       className="
-        bg-[#F7F4ED]
-        rounded-3xl
-        p-8
-        shadow-[0_12px_35px_rgba(0,0,0,0.15)]
-        border border-[#D8CFBF]
+        relative
+        w-full
+        overflow-hidden
+        border
+        bg-[#F8F2F0]
+        px-6
+        py-8
         text-center
-        flex flex-col items-center
+        shadow-[0_12px_35px_rgba(102,84,90,0.10)]
+        sm:px-10
+        sm:py-10
       "
+      style={{
+        borderColor: "rgba(184,154,106,0.35)",
+      }}
     >
-      {/* ICONO */}
+      {/* MARCO INTERIOR */}
+
       <div
         className="
-          w-20 h-20
-          rounded-full
-          bg-[#5E6650]/10
-          border border-[#B89B5E]/40
-          flex items-center justify-center
+          pointer-events-none
+          absolute
+          inset-2
+          border
+          sm:inset-3
         "
-      >
-        <Icono
-          size={38}
-          strokeWidth={1.4}
-          className="text-[#B89B5E]"
+        style={{
+          borderColor: "rgba(232,207,203,0.65)",
+        }}
+      />
+
+      {/* CONTENIDO */}
+
+      <div className="relative z-10 flex flex-col items-center">
+
+        {/* ICONO */}
+
+        <div
+          className="
+            mb-5
+            flex
+            h-16
+            w-16
+            items-center
+            justify-center
+            rounded-full
+            border
+            sm:h-20
+            sm:w-20
+          "
+          style={{
+            backgroundColor: "rgba(232,207,203,0.35)",
+            borderColor: "rgba(184,154,106,0.45)",
+          }}
+        >
+          <Icono
+            size={32}
+            strokeWidth={1.3}
+            style={{
+              color: colores.rosaAntiguo,
+            }}
+          />
+        </div>
+
+        {/* HORA */}
+
+        <p
+          className="
+            font-sans
+            text-xs
+            font-semibold
+            uppercase
+            tracking-[0.2em]
+            sm:text-sm
+          "
+          style={{
+            color: colores.champagne,
+          }}
+        >
+          {evento.hora}
+        </p>
+
+        {/* TÍTULO */}
+
+        <h3
+          className="
+            mt-4
+            font-serif
+            text-2xl
+            font-normal
+            leading-snug
+            sm:text-3xl
+          "
+          style={{
+            fontFamily: '"Playfair Display", Georgia, serif',
+            color: colores.ciruela,
+          }}
+        >
+          {evento.titulo}
+        </h3>
+
+        {/* DIVISOR */}
+
+        <div
+          className="my-5 h-px w-12"
+          style={{
+            backgroundColor: colores.champagne,
+          }}
         />
+
+        {/* DESCRIPCIÓN */}
+
+        <p
+          className="
+            max-w-xs
+            font-serif
+            text-sm
+            italic
+            leading-relaxed
+            sm:text-base
+          "
+          style={{
+            fontFamily: '"Playfair Display", Georgia, serif',
+            color: colores.ciruela,
+            opacity: 0.85,
+          }}
+        >
+          {evento.descripcion}
+        </p>
       </div>
-
-      {/* NOMBRE DEL EVENTO */}
-      <h2 className="mt-6 text-2xl font-playfair text-black">
-        {evento.titulo}
-      </h2>
-
-      {/* HORARIO */}
-      <p className="mt-3 text-[#B89B5E] font-[DancingScript] text-xl">
-        {evento.hora}
-      </p>
-    </motion.div>
+    </motion.article>
   );
 };
 
@@ -143,110 +257,336 @@ const TarjetaItinerario = ({ evento, index }) => {
 // COMPONENTE PRINCIPAL
 // ==========================================
 
-const Itinerario2 = () => {
+export default function Itinerario2() {
   return (
     <section
+      id="itinerario"
       className="
+        relative
         w-full
-        bg-[#5E6650]
-        py-20
-        px-6
-        flex items-center justify-center
         overflow-hidden
+        bg-[#E8CFCB]
+        px-5
+        py-20
+        sm:px-8
+        sm:py-28
       "
     >
-      <motion.div
-        variants={containerFade}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
+      {/* DECORACIÓN DE FONDO */}
+
+      <div
         className="
-          w-full max-w-6xl mx-auto
-          rounded-tl-[4rem]
-          rounded-br-[4rem]
-          rounded-tr-[1rem]
-          rounded-bl-[1rem]
-          p-6 sm:p-12
+          pointer-events-none
+          absolute
+          -left-32
+          top-20
+          h-80
+          w-80
+          rounded-full
+          border
         "
-      >
-        {/* ENCABEZADO */}
+        style={{
+          borderColor: "rgba(184,154,106,0.2)",
+        }}
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-32
+          bottom-20
+          h-80
+          w-80
+          rounded-full
+          border
+        "
+        style={{
+          borderColor: "rgba(184,154,106,0.2)",
+        }}
+      />
+
+      {/* CONTENEDOR */}
+
+      <div className="relative z-10 mx-auto max-w-5xl">
+
+        {/* ======================================
+            ENCABEZADO
+        ====================================== */}
+
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1],
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
           }}
-          viewport={{ once: true }}
-          className="text-center"
+          className="mb-16 text-center"
         >
+          {/* ORNAMENTO SUPERIOR */}
+
+          <div className="mb-6 flex items-center justify-center gap-4">
+            <span
+              className="h-px w-12"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+
+            <Sparkles
+              size={23}
+              strokeWidth={1.2}
+              style={{
+                color: colores.champagne,
+              }}
+            />
+
+            <span
+              className="h-px w-12"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+          </div>
+
+          {/* SUBTÍTULO */}
+
           <p
             className="
-              uppercase tracking-[0.25em]
-              text-[#E7D7B1]
-              text-sm font-semibold
+              font-sans
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.3em]
+              sm:text-sm
             "
+            style={{
+              color: colores.ciruela,
+            }}
           >
-            Nuestro Día
+            Una noche llena de magia
           </p>
 
-          <h1
-            className="
-              text-4xl sm:text-5xl md:text-6xl
-              font-playfair
-              text-[#F7F4ED]
-              mt-4
-            "
-          >
-            Itinerario
-          </h1>
+          {/* TÍTULO */}
 
-          <div className="w-24 h-[2px] bg-[#B89B5E] mx-auto mt-6"></div>
+          <h2
+            className="
+              mt-5
+              font-serif
+              text-4xl
+              font-normal
+              sm:text-5xl
+              md:text-6xl
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
+          >
+            Nuestro
+            <br />
+            <em
+              style={{
+                color: colores.rosaAntiguo,
+              }}
+            >
+              Itinerario
+            </em>
+          </h2>
+
+          {/* DIVISOR */}
+
+          <div
+            className="mx-auto mt-7 h-px w-24"
+            style={{
+              backgroundColor: colores.champagne,
+            }}
+          />
+
+          {/* DESCRIPCIÓN */}
+
+          <p
+            className="
+              mx-auto
+              mt-7
+              max-w-lg
+              font-serif
+              text-base
+              leading-relaxed
+              sm:text-lg
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
+          >
+            Cada momento de esta noche será
+            parte de una historia inolvidable.
+          </p>
         </motion.div>
 
-        {/* CONTENEDOR DEL ITINERARIO */}
-        <div className="relative mt-20">
+        {/* ======================================
+            LÍNEA DE TIEMPO
+        ====================================== */}
 
-          {/* LÍNEA CENTRAL */}
+        <div className="relative">
+
+          {/* LÍNEA VERTICAL CENTRAL - COMPUTADORA */}
+
           <div
             className="
-              hidden md:block
-              absolute left-1/2 top-0
-              h-full w-[3px]
-              bg-[#E7D7B1]/40
+              pointer-events-none
+              absolute
+              bottom-0
+              left-1/2
+              top-0
+              hidden
+              w-px
               -translate-x-1/2
+              md:block
             "
-          ></div>
+            style={{
+              backgroundColor: "rgba(184,154,106,0.65)",
+            }}
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
+          {/* LÍNEA VERTICAL - CELULAR */}
 
-            {/* COLUMNA IZQUIERDA */}
-            <div className="flex flex-col gap-14">
-              {eventosIzquierda.map((evento, index) => (
-                <TarjetaItinerario
-                  key={index}
-                  evento={evento}
-                  index={index}
-                />
-              ))}
-            </div>
+          <div
+            className="
+              pointer-events-none
+              absolute
+              bottom-0
+              left-4
+              top-0
+              w-px
+              md:hidden
+            "
+            style={{
+              backgroundColor: "rgba(184,154,106,0.65)",
+            }}
+          />
 
-            {/* COLUMNA DERECHA */}
-            <div className="flex flex-col gap-14 md:mt-20">
-              {eventosDerecha.map((evento, index) => (
-                <TarjetaItinerario
-                  key={index}
-                  evento={evento}
-                  index={index + eventosIzquierda.length}
-                />
-              ))}
-            </div>
+          {/* EVENTOS */}
 
+          <div className="flex flex-col gap-10 md:gap-12">
+            {eventos.map((evento, index) => {
+              const esIzquierda = index % 2 === 0;
+
+              return (
+                <div
+                  key={evento.id}
+                  className="
+                    relative
+                    grid
+                    grid-cols-[32px_minmax(0,1fr)]
+                    items-center
+                    gap-4
+                    md:grid-cols-[minmax(0,1fr)_48px_minmax(0,1fr)]
+                    md:gap-5
+                  "
+                >
+                  {/* PUNTO CENTRAL */}
+
+                  <div
+                    className="
+                      relative
+                      z-10
+                      col-start-1
+                      row-start-1
+                      mx-auto
+                      h-4
+                      w-4
+                      rotate-45
+                      border-2
+                      bg-[#E8CFCB]
+                      md:col-start-2
+                    "
+                    style={{
+                      borderColor: colores.champagne,
+                    }}
+                  />
+
+                  {/* TARJETA */}
+
+                  <div
+                    className={`
+                      col-start-2
+                      row-start-1
+                      min-w-0
+                      ${
+                        esIzquierda
+                          ? "md:col-start-1"
+                          : "md:col-start-3"
+                      }
+                    `}
+                  >
+                    <TarjetaItinerario
+                      evento={evento}
+                      index={index}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </motion.div>
+
+        {/* ======================================
+            MENSAJE FINAL
+        ====================================== */}
+
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+          }}
+          className="mt-16 text-center"
+        >
+          <div className="mb-5 flex items-center justify-center gap-4">
+            <span
+              className="h-px w-10"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+
+            <Heart
+              size={20}
+              strokeWidth={1.3}
+              style={{
+                color: colores.rosaAntiguo,
+              }}
+            />
+
+            <span
+              className="h-px w-10"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+          </div>
+
+          <p
+            className="
+              font-serif
+              text-lg
+              italic
+              leading-relaxed
+              sm:text-xl
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
+          >
+            ¡Prepárate para vivir una noche inolvidable!
+          </p>
+        </motion.div>
+
+      </div>
     </section>
   );
-};
-
-export default Itinerario2;
+}

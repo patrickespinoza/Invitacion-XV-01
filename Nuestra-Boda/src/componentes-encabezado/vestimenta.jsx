@@ -1,172 +1,446 @@
+
 import React from "react";
 import { motion } from "framer-motion";
+import { Sparkles, Shirt } from "lucide-react";
 
-const Vestimenta = () => {
+// ==========================================
+// CONFIGURACIÓN EDITABLE - WEDLY
+// ==========================================
 
-  const fadeUp = {
-    hidden: {
-      opacity: 0,
-      y: 40,
+const vestimentaConfig = {
+  titulo: "Vestimenta Formal",
+
+  descripcion:
+    "Para esta noche tan especial, te invito a lucir tu mejor atuendo y acompañarme a celebrar mis XV años con elegancia y mucho estilo.",
+
+  recomendacion:
+    "Vestidos de noche y traje formal",
+
+  frase:
+    "Una noche mágica merece un look inolvidable.",
+};
+
+// ==========================================
+// PALETA XV ESENCIAL
+// ROSA EMPOLVADO Y CHAMPÁN
+// ==========================================
+
+const colores = {
+  marfil: "#F8F2F0",
+  rosaClaro: "#E8CFCB",
+  rosaAntiguo: "#C89B91",
+  champagne: "#B89A6A",
+  ciruela: "#66545A",
+};
+
+// ==========================================
+// ANIMACIONES
+// ==========================================
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
     },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
+  },
+};
 
+// ==========================================
+// COMPONENTE PRINCIPAL
+// ==========================================
+
+export default function Vestimenta() {
   return (
-    <div className="w-full bg-[#F7F4ED] py-2 px-0 flex items-center justify-center overflow-hidden">
+    <section
+      id="vestimenta"
+      className="
+        relative
+        w-full
+        overflow-hidden
+        px-5
+        py-20
+        sm:px-8
+        sm:py-28
+      "
+      style={{
+        backgroundColor: colores.marfil,
+      }}
+    >
+      {/* DECORACIÓN DE FONDO */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -left-24
+          -top-24
+          h-72
+          w-72
+          rounded-full
+          blur-3xl
+        "
+        style={{
+          backgroundColor: "rgba(232,207,203,0.35)",
+        }}
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-24
+          -right-24
+          h-72
+          w-72
+          rounded-full
+          blur-3xl
+        "
+        style={{
+          backgroundColor: "rgba(200,155,145,0.2)",
+        }}
+      />
+
+      {/* TARJETA PRINCIPAL */}
 
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{
+          once: true,
+          amount: 0.15,
+        }}
         className="
-          relative max-w-6xl w-full
-          bg-white
-          rounded-tl-[3rem] sm:rounded-tl-[4rem]
-          rounded-br-[3rem] sm:rounded-br-[4rem]
-          rounded-tr-[1rem]
-          rounded-bl-[1rem]
-          shadow-[0_15px_50px_rgba(0,0,0,0.12)]
+          relative
+          mx-auto
+          w-full
+          max-w-4xl
           overflow-hidden
-          grid grid-cols-1 lg:grid-cols-2
+          bg-white
+          px-7
+          py-16
+          text-center
+          shadow-[0_20px_70px_rgba(102,84,90,0.08)]
+          sm:px-14
+          sm:py-20
+          md:px-20
         "
       >
+        {/* MARCO EXTERIOR */}
 
-        {/* IMAGEN */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="
-            relative
-            h-[280px]
-            sm:h-[420px]
-            md:h-[500px]
-            lg:h-full
-            min-h-[300px]
-          "
-        >
-
-          <img
-            src="/dress-code2.png"
-            alt="Vestimenta"
-            className="
-              w-full h-full
-              object-cover
-              object-center
-            "
-          />
-
-          {/* Overlay elegante */}
-          <div className="absolute inset-0 bg-black/10"></div>
-
-        </motion.div>
-
-        {/* TEXTO */}
         <div
           className="
-            flex flex-col items-center justify-center
-            text-center
-            p-8
-            sm:p-12
-            lg:p-16
+            pointer-events-none
+            absolute
+            inset-3
+            border
+            sm:inset-5
           "
-        >
+          style={{
+            borderColor: "rgba(184,154,106,0.35)",
+          }}
+        />
+
+        {/* MARCO INTERIOR */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-5
+            border
+            sm:inset-7
+          "
+          style={{
+            borderColor: "rgba(232,207,203,0.65)",
+          }}
+        />
+
+        {/* CONTENIDO */}
+
+        <div className="relative z-10 flex flex-col items-center">
+
+          {/* ORNAMENTO SUPERIOR */}
+
+          <motion.div
+            variants={fadeUp}
+            className="mb-7 flex items-center gap-4"
+          >
+            <span
+              className="h-px w-12"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+
+            <Sparkles
+              size={22}
+              strokeWidth={1.2}
+              style={{
+                color: colores.rosaAntiguo,
+              }}
+            />
+
+            <span
+              className="h-px w-12"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+          </motion.div>
+
+          {/* SUBTÍTULO */}
 
           <motion.p
-            initial={{ opacity: 0, letterSpacing: "0.5em" }}
-            whileInView={{ opacity: 1, letterSpacing: "0.2em" }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
+            variants={fadeUp}
             className="
-              uppercase
+              font-sans
               text-[11px]
-              sm:text-sm
-              tracking-[0.2em]
-              text-[#B89B5E]
               font-semibold
+              uppercase
+              tracking-[0.3em]
+              sm:text-xs
             "
+            style={{
+              color: colores.champagne,
+            }}
           >
-            Código de Vestimenta
+            Una noche especial
           </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
+          {/* TÍTULO */}
+
+          <motion.h2
+            variants={fadeUp}
             className="
-              text-3xl
-              sm:text-4xl
-              md:text-5xl
-              lg:text-6xl
-              font-playfair
-              text-black
-              mt-5
+              mt-6
+              font-serif
+              text-4xl
+              font-normal
               leading-tight
+              sm:text-5xl
+              md:text-6xl
             "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
           >
-            Vestimenta Formal
-          </motion.h1>
+            Código de
+            <br />
+            <em
+              style={{
+                color: colores.rosaAntiguo,
+              }}
+            >
+              Vestimenta
+            </em>
+          </motion.h2>
+
+          {/* DIVISOR */}
 
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "6rem" }}
-            transition={{ duration: 1, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="h-[2px] bg-[#B89B5E] mt-6"
-          />
+            variants={fadeUp}
+            className="my-9 flex items-center gap-3"
+          >
+            <span
+              className="h-px w-12"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+
+            <span
+              className="h-2 w-2 rotate-45 border"
+              style={{
+                borderColor: colores.champagne,
+              }}
+            />
+
+            <span
+              className="h-px w-12"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+          </motion.div>
+
+          {/* ÍCONO DE VESTIMENTA */}
+
+          <motion.div
+            variants={fadeUp}
+            className="
+              mb-7
+              flex
+              h-24
+              w-24
+              items-center
+              justify-center
+              rounded-full
+              border
+            "
+            style={{
+              backgroundColor: "rgba(232,207,203,0.3)",
+              borderColor: "rgba(184,154,106,0.45)",
+            }}
+          >
+            <Shirt
+              size={42}
+              strokeWidth={1.1}
+              style={{
+                color: colores.rosaAntiguo,
+              }}
+            />
+          </motion.div>
+
+          {/* TIPO DE VESTIMENTA */}
+
+          <motion.h3
+            variants={fadeUp}
+            className="
+              font-serif
+              text-2xl
+              font-normal
+              sm:text-3xl
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
+          >
+            {vestimentaConfig.titulo}
+          </motion.h3>
+
+          {/* DESCRIPCIÓN */}
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            viewport={{ once: true }}
+            variants={fadeUp}
             className="
-              mt-6 sm:mt-8
+              mx-auto
+              mt-6
+              max-w-lg
+              font-serif
               text-base
+              leading-[1.9]
               sm:text-lg
-              md:text-xl
-              text-black/70
-              leading-relaxed
-              max-w-md
-              font-[DancingScript]
             "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
           >
-            Queremos compartir contigo una noche elegante y especial.
-            Te invitamos a asistir con vestimenta formal para celebrar
-            juntos este momento inolvidable.
+            {vestimentaConfig.descripcion}
           </motion.p>
 
-          {/* FRASE */}
+          {/* RECOMENDACIÓN */}
+
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            viewport={{ once: true }}
+            variants={fadeUp}
             className="
-              mt-8 sm:mt-10
-              text-[#B89B5E]
-              text-xs sm:text-sm
-              tracking-[0.2em]
-              text-center
+              mt-9
+              w-full
+              max-w-md
+              border-y
+              px-4
+              py-6
             "
+            style={{
+              borderColor: "rgba(184,154,106,0.3)",
+            }}
           >
-            ✦ Elegancia • Glamour • Celebración ✦
+            <p
+              className="
+                font-sans
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                sm:text-xs
+              "
+              style={{
+                color: colores.champagne,
+              }}
+            >
+              Sugerencia de atuendo
+            </p>
+
+            <p
+              className="
+                mt-3
+                font-serif
+                text-lg
+                italic
+                sm:text-xl
+              "
+              style={{
+                fontFamily: '"Playfair Display", Georgia, serif',
+                color: colores.ciruela,
+              }}
+            >
+              {vestimentaConfig.recomendacion}
+            </p>
+          </motion.div>
+
+          {/* FRASE FINAL */}
+
+          <motion.p
+            variants={fadeUp}
+            className="
+              mt-10
+              max-w-md
+              font-serif
+              text-lg
+              italic
+              leading-relaxed
+              sm:text-xl
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.rosaAntiguo,
+            }}
+          >
+            {vestimentaConfig.frase}
+          </motion.p>
+
+          {/* ORNAMENTO INFERIOR */}
+
+          <motion.div
+            variants={fadeUp}
+            className="mt-9 flex items-center gap-4"
+          >
+            <span
+              className="h-px w-10"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
+
+            <span
+              className="font-serif text-xl"
+              style={{
+                color: colores.rosaAntiguo,
+              }}
+            >
+              ✧
+            </span>
+
+            <span
+              className="h-px w-10"
+              style={{
+                backgroundColor: colores.champagne,
+              }}
+            />
           </motion.div>
 
         </div>
-
       </motion.div>
-    </div>
+    </section>
   );
-};
-
-export default Vestimenta;
+}

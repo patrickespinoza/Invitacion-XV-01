@@ -11,21 +11,34 @@ import {
 } from "lucide-react";
 
 // ==========================================
+// PALETA XV ESENCIAL - WEDLY
+// ROSA EMPOLVADO Y CHAMPÁN
+// ==========================================
+
+const colores = {
+  marfil: "#F8F2F0",
+  rosaClaro: "#E8CFCB",
+  rosaAntiguo: "#C89B91",
+  champagne: "#B89A6A",
+  ciruela: "#66545A",
+};
+
+// ==========================================
 // INFORMACIÓN EDITABLE - WEDLY
 // ==========================================
 
 // FECHA DE LA CELEBRACIÓN
 const fechaCelebracion = {
-  dia: "Jueves",
+  dia: "Viernes",
   fecha: "11",
-  mesAnio: "Junio 2026",
+  mesAnio: "Junio 2027",
 };
 
 // CEREMONIA
 const ceremonia = {
   titulo: "Ceremonia",
   hora: "4:30 PM",
-  lugar: "Salón Event Center",
+  lugar: "Parroquia de Nuestra Señora",
   direccion: "Puebla, Puebla",
   ubicacion: "https://maps.app.goo.gl/TsSDUBKAractwi8F8",
   icono: Church,
@@ -81,86 +94,151 @@ const TarjetaEvento = ({
       whileHover={{ y: -5 }}
       className="
         relative
-        w-full max-w-xl
-        bg-[#F7F4ED]
-        border border-[#D8CFBF]
-        rounded-tl-[4rem]
-        rounded-br-[4rem]
-        rounded-tr-[1rem]
-        rounded-bl-[1rem]
-        shadow-[0_20px_60px_rgba(0,0,0,0.18)]
-        px-7 py-12
-        sm:px-12 sm:py-14
+        w-full
+        max-w-xl
         overflow-hidden
+        border
+        bg-[#F8F2F0]
+        px-7
+        py-12
+        shadow-[0_20px_60px_rgba(102,84,90,0.15)]
+        sm:px-12
+        sm:py-14
       "
+      style={{
+        borderColor: "rgba(184,154,106,0.4)",
+      }}
     >
-      {/* DETALLE DECORATIVO SUPERIOR */}
+      {/* MARCO DECORATIVO INTERIOR */}
       <div
         className="
-          absolute top-0 left-1/2
-          -translate-x-1/2
-          w-32 h-[3px]
-          bg-[#B89B5E]
+          pointer-events-none
+          absolute
+          inset-3
+          border
+          sm:inset-4
         "
+        style={{
+          borderColor: "rgba(200,155,145,0.35)",
+        }}
+      />
+
+      {/* DETALLE SUPERIOR */}
+      <div
+        className="
+          absolute
+          left-1/2
+          top-0
+          h-[3px]
+          w-28
+          -translate-x-1/2
+        "
+        style={{
+          backgroundColor: colores.champagne,
+        }}
       />
 
       {/* DECORACIÓN DE FONDO */}
       <div
         className="
-          absolute -top-16 -right-16
-          w-48 h-48
-          rounded-full
-          border border-[#B89B5E]/15
           pointer-events-none
+          absolute
+          -right-16
+          -top-16
+          h-48
+          w-48
+          rounded-full
+          border
         "
+        style={{
+          borderColor: "rgba(200,155,145,0.2)",
+        }}
       />
 
       <div
         className="
-          absolute -top-9 -right-9
-          w-32 h-32
-          rounded-full
-          border border-[#B89B5E]/15
           pointer-events-none
+          absolute
+          -right-9
+          -top-9
+          h-32
+          w-32
+          rounded-full
+          border
         "
+        style={{
+          borderColor: "rgba(184,154,106,0.2)",
+        }}
       />
 
+      {/* CONTENIDO */}
       <div className="relative z-10 flex flex-col items-center text-center">
 
         {/* ICONO PRINCIPAL */}
         <div
           className="
-            w-20 h-20
+            mb-7
+            flex
+            h-20
+            w-20
+            items-center
+            justify-center
             rounded-full
-            border border-[#B89B5E]/40
-            bg-[#5E6650]/5
-            flex items-center justify-center
-            mb-6
+            border
           "
+          style={{
+            borderColor: "rgba(184,154,106,0.45)",
+            backgroundColor: "rgba(232,207,203,0.3)",
+          }}
         >
           <Icono
-            size={36}
+            size={35}
             strokeWidth={1.3}
-            className="text-[#B89B5E]"
+            style={{
+              color: colores.champagne,
+            }}
           />
         </div>
 
         {/* TÍTULO */}
-        <h2
+        <h3
           className="
-            text-3xl sm:text-4xl
-            font-playfair
-            text-[#343A2D]
+            font-serif
+            text-3xl
+            font-normal
             tracking-wide
+            sm:text-4xl
           "
+          style={{
+            fontFamily: '"Playfair Display", Georgia, serif',
+            color: colores.ciruela,
+          }}
         >
           {titulo}
-        </h2>
+        </h3>
 
-        <div className="flex items-center gap-3 mt-6 mb-9">
-          <div className="w-12 h-[1px] bg-[#B89B5E]/70" />
-          <div className="w-2 h-2 rotate-45 border border-[#B89B5E]" />
-          <div className="w-12 h-[1px] bg-[#B89B5E]/70" />
+        {/* DIVISOR */}
+        <div className="mb-9 mt-7 flex items-center gap-3">
+          <div
+            className="h-px w-12"
+            style={{
+              backgroundColor: colores.champagne,
+            }}
+          />
+
+          <div
+            className="h-2 w-2 rotate-45 border"
+            style={{
+              borderColor: colores.champagne,
+            }}
+          />
+
+          <div
+            className="h-px w-12"
+            style={{
+              backgroundColor: colores.champagne,
+            }}
+          />
         </div>
 
         {/* HORA */}
@@ -168,38 +246,107 @@ const TarjetaEvento = ({
           <Clock3
             size={21}
             strokeWidth={1.5}
-            className="text-[#B89B5E] mb-3"
+            className="mb-3"
+            style={{
+              color: colores.rosaAntiguo,
+            }}
           />
 
-          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#8C774D]">
+          <p
+            className="
+              font-sans
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.25em]
+            "
+            style={{
+              color: colores.champagne,
+            }}
+          >
             Hora del evento
           </p>
 
-          <p className="text-2xl sm:text-3xl font-playfair text-[#343A2D] mt-3">
+          <p
+            className="
+              mt-3
+              font-serif
+              text-2xl
+              sm:text-3xl
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
+          >
             {hora}
           </p>
         </div>
 
         {/* SEPARADOR */}
-        <div className="w-16 h-[1px] bg-[#D8CFBF] my-9" />
+        <div
+          className="my-9 h-px w-16"
+          style={{
+            backgroundColor: colores.rosaClaro,
+          }}
+        />
 
         {/* LUGAR */}
         <div className="flex flex-col items-center">
           <MapPin
             size={22}
             strokeWidth={1.5}
-            className="text-[#B89B5E] mb-3"
+            className="mb-3"
+            style={{
+              color: colores.rosaAntiguo,
+            }}
           />
 
-          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#8C774D]">
+          <p
+            className="
+              font-sans
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.25em]
+            "
+            style={{
+              color: colores.champagne,
+            }}
+          >
             Lugar
           </p>
 
-          <h3 className="text-2xl sm:text-3xl font-playfair text-[#343A2D] mt-3">
+          <h4
+            className="
+              mt-3
+              font-serif
+              text-2xl
+              leading-snug
+              sm:text-3xl
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: colores.ciruela,
+            }}
+          >
             {lugar}
-          </h3>
+          </h4>
 
-          <p className="text-[#5E6650]/80 mt-4 leading-relaxed text-sm sm:text-base max-w-sm">
+          <p
+            className="
+              mt-4
+              max-w-sm
+              font-sans
+              text-sm
+              leading-relaxed
+              sm:text-base
+            "
+            style={{
+              color: colores.ciruela,
+              opacity: 0.8,
+            }}
+          >
             {direccion}
           </p>
         </div>
@@ -209,41 +356,66 @@ const TarjetaEvento = ({
           href={ubicacion}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
+          whileHover={{
+            scale: 1.04,
+          }}
+          whileTap={{
+            scale: 0.97,
+          }}
           className="
             group
             mt-10
-            inline-flex items-center justify-center gap-3
-            bg-[#5E6650]
-            hover:bg-[#4B5340]
-            text-white
-            px-8 py-4
+            inline-flex
+            items-center
+            justify-center
+            gap-3
             rounded-full
-            shadow-[0_8px_25px_rgba(94,102,80,0.25)]
-            transition-colors duration-300
-            text-sm font-medium tracking-wide
+            bg-[#66545A]
+            px-8
+            py-4
+            font-sans
+            text-sm
+            font-medium
+            tracking-wide
+            text-white
+            shadow-[0_8px_25px_rgba(102,84,90,0.2)]
+            transition-colors
+            duration-300
+            hover:bg-[#544349]
           "
         >
-          <MapPin size={18} strokeWidth={1.7} />
+          <MapPin
+            size={18}
+            strokeWidth={1.7}
+          />
 
           Ver ubicación
 
           <ArrowUpRight
             size={17}
-            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+            className="
+              transition-transform
+              duration-300
+              group-hover:translate-x-1
+              group-hover:-translate-y-1
+            "
           />
         </motion.a>
       </div>
 
-      {/* DETALLE DECORATIVO INFERIOR */}
+      {/* DETALLE INFERIOR */}
       <div
         className="
-          absolute bottom-0 left-1/2
+          absolute
+          bottom-0
+          left-1/2
+          h-[3px]
+          w-28
           -translate-x-1/2
-          w-32 h-[3px]
-          bg-[#B89B5E]
         "
+        style={{
+          backgroundColor: colores.champagne,
+        }}
       />
     </motion.article>
   );
@@ -253,40 +425,55 @@ const TarjetaEvento = ({
 // COMPONENTE PRINCIPAL
 // ==========================================
 
-const Celebracion = () => {
+export default function Celebracion() {
   return (
     <section
+      id="celebracion"
       className="
         relative
         w-full
-        bg-[#5E6650]
-        py-20 sm:py-28
-        px-5 sm:px-8
         overflow-hidden
+        bg-[#C89B91]
+        px-5
+        py-20
+        sm:px-8
+        sm:py-28
       "
     >
       {/* DECORACIÓN DE FONDO */}
       <div
         className="
-          absolute top-20 -left-32
-          w-80 h-80
-          rounded-full
-          border border-[#E7D7B1]/10
           pointer-events-none
+          absolute
+          -left-32
+          top-20
+          h-80
+          w-80
+          rounded-full
+          border
         "
+        style={{
+          borderColor: "rgba(248,242,240,0.2)",
+        }}
       />
 
       <div
         className="
-          absolute bottom-20 -right-32
-          w-80 h-80
-          rounded-full
-          border border-[#E7D7B1]/10
           pointer-events-none
+          absolute
+          -right-32
+          bottom-20
+          h-80
+          w-80
+          rounded-full
+          border
         "
+        style={{
+          borderColor: "rgba(248,242,240,0.2)",
+        }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-6xl">
 
         {/* ENCABEZADO */}
         <motion.div
@@ -294,62 +481,132 @@ const Celebracion = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-10 h-[1px] bg-[#E7D7B1]/60" />
+          {/* ORNAMENTO */}
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <div
+              className="h-px w-10"
+              style={{
+                backgroundColor: colores.marfil,
+              }}
+            />
 
             <CalendarDays
               size={19}
               strokeWidth={1.4}
-              className="text-[#E7D7B1]"
+              style={{
+                color: colores.marfil,
+              }}
             />
 
-            <div className="w-10 h-[1px] bg-[#E7D7B1]/60" />
+            <div
+              className="h-px w-10"
+              style={{
+                backgroundColor: colores.marfil,
+              }}
+            />
           </div>
 
-          <p className="uppercase tracking-[0.4em] text-[#E7D7B1] text-xs sm:text-sm font-semibold">
-            Nuestra celebración
+          {/* SUBTÍTULO */}
+          <p
+            className="
+              font-sans
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.35em]
+              sm:text-sm
+            "
+            style={{
+              color: colores.marfil,
+            }}
+          >
+            Mis XV años
           </p>
 
-          <h2 className="text-4xl sm:text-5xl font-playfair text-[#F7F4ED] mt-5">
+          {/* TÍTULO */}
+          <h2
+            className="
+              mt-5
+              font-serif
+              text-4xl
+              font-normal
+              sm:text-5xl
+            "
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              color: "#FFFFFF",
+            }}
+          >
             Un día inolvidable
           </h2>
 
           {/* FECHA */}
           <div className="mt-12 flex flex-col items-center">
 
-            <p className="text-[#E7D7B1] tracking-[0.35em] uppercase text-sm sm:text-base font-semibold">
+            <p
+              className="
+                font-sans
+                text-sm
+                font-semibold
+                uppercase
+                tracking-[0.3em]
+                sm:text-base
+              "
+              style={{
+                color: colores.marfil,
+              }}
+            >
               {fechaCelebracion.dia}
             </p>
 
             <h3
               className="
-                text-7xl sm:text-8xl md:text-9xl
-                font-playfair
-                text-[#F7F4ED]
-                leading-none
                 mt-4
-                drop-shadow-lg
+                font-serif
+                text-7xl
+                leading-none
+                sm:text-8xl
+                md:text-9xl
               "
+              style={{
+                fontFamily: '"Playfair Display", Georgia, serif',
+                color: "#FFFFFF",
+                textShadow: "0 5px 25px rgba(102,84,90,0.15)",
+              }}
             >
               {fechaCelebracion.fecha}
             </h3>
 
-            <p className="text-[#E7D7B1] text-xl sm:text-2xl tracking-[0.2em] mt-5">
+            <p
+              className="
+                mt-5
+                font-serif
+                text-xl
+                tracking-[0.15em]
+                sm:text-2xl
+              "
+              style={{
+                fontFamily: '"Playfair Display", Georgia, serif',
+                color: colores.marfil,
+              }}
+            >
               {fechaCelebracion.mesAnio}
             </p>
-
           </div>
         </motion.div>
 
         {/* TARJETAS */}
         <div
           className="
-            grid grid-cols-1 lg:grid-cols-2
-            gap-10 lg:gap-8
+            grid
+            grid-cols-1
             items-stretch
             justify-items-center
+            gap-10
+            lg:grid-cols-2
+            lg:gap-8
           "
         >
           <TarjetaEvento {...ceremonia} />
@@ -363,19 +620,21 @@ const Celebracion = () => {
           whileInView="visible"
           viewport={{ once: true }}
           className="
-            text-center
-            text-[#E7D7B1]
-            font-playfair italic
-            text-lg sm:text-xl
             mt-16
+            text-center
+            font-serif
+            text-lg
+            italic
+            sm:text-xl
           "
+          style={{
+            fontFamily: '"Playfair Display", Georgia, serif',
+            color: colores.marfil,
+          }}
         >
           Cada momento será más especial con tu presencia.
         </motion.p>
-
       </div>
     </section>
   );
-};
-
-export default Celebracion;
+}
